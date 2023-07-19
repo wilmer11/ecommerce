@@ -1,0 +1,39 @@
+server:
+  port: 8900
+spring:
+  application:
+    name: api-gateway
+  session:
+    store-type: redis
+    redis:
+      namespace: session
+      flush-mode: on-save
+  redis:
+    host: localhost
+    port: 6379
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+zuul:
+  prefix: /api
+  ignored-services: *
+  # Users Services
+  routes:
+    userservice:
+      path: /accounts/**
+      service-id: user-service
+  # Catalog service
+    catalogservice:
+      path: /catalog/**
+    catalog:
+      service-id: product-catalog-service
+  # Order service
+    orderservice:
+      path: /shop/**
+      service-id: order-service
+  # Recommendation service
+    recommendationservice:
+      path: /review/**
+      service-id: product-recommendation-service
+  sensitive-headers:
