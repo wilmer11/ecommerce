@@ -1,0 +1,25 @@
+server:
+  port: 8812
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+spring:
+  application:
+    name: product-recommendation-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/products
+    username: root
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  hibernate:
+    ddl-auto: none
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
